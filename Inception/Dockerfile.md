@@ -1,0 +1,6 @@
+## Commands:
+
+| command | description                                                                                                     | constraints                        | formats                                                                        | arguments                                       | example              |
+| ------- | --------------------------------------------------------------------------------------------------------------- | ---------------------------------- | ------------------------------------------------------------------------------ | ----------------------------------------------- | -------------------- |
+| `FROM`  | start from base image.                                                                                          | must be the first non-comment line | `FROM <image>`<br>`FROM <image>[:tag]`<br>`FROM <image>[:digest]`              | `image` is the base image name.<br>`tag` is the | `FROM debian:latest` |
+| `RUN`   | run commands when building the image, these are commands that change the file system and only need to run once. | N/a                                | `RUN <command> [arg1] [arg2] ..`<br>`RUN ["<command>"[, "arg1"][, "arg2"] ..]` |                                                 |                      |
