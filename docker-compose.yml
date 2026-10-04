@@ -1,0 +1,18 @@
+services:
+  # nginx:
+  #   build: ./srcs/nginx
+
+  wordpress:
+    build: srcs/wordpress
+    depends_on:
+      - mariadb
+    networks:
+      - neet
+
+  mariadb:
+    build: srcs/mariadb
+    networks:
+      - neet
+
+networks:
+  neet:
