@@ -10,7 +10,7 @@ RUN openssl req -x509 -nodes -days 365 -newkey rsa:2048 \
 
 COPY ./nginx_template.txt /etc/nginx/sites-available/default
 
-EXPOSE 80
 EXPOSE 443
 
+ENTRYPOINT
 CMD ["nginx", "-g", "daemon off;"]
