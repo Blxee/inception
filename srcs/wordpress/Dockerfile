@@ -20,12 +20,5 @@ EXPOSE 9000
 COPY config.sh /usr/local/bin/config.sh
 RUN chmod +x /usr/local/bin/config.sh
 
-RUN mkdir -p /var/www/html \
-    && chown -R www-data:www-data /var/www
-
-
-ENTRYPOINT ["bash"]
-# USER www-data
-
-# ENTRYPOINT ["/usr/local/bin/config.sh"]
-# CMD ["php-fpm8.2", "-F"]
+ENTRYPOINT ["/usr/local/bin/config.sh"]
+CMD ["php-fpm8.2", "-F"]

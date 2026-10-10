@@ -1,6 +1,14 @@
 services:
-  # nginx:
-  #   build: ./srcs/nginx
+  nginx:
+    build: ./srcs/nginx
+    depends_on:
+      - wordpress
+    networks:
+      - neet
+    ports:
+      - "4443:443"
+    volumes:
+      - wp_files:/var/www/html
 
   wordpress:
     build: srcs/wordpress
@@ -8,6 +16,8 @@ services:
       - mariadb
     networks:
       - neet
+    volumes:
+      - wp_files:/var/www/html
 
   mariadb:
     build: srcs/mariadb
@@ -16,3 +26,7 @@ services:
 
 networks:
   neet:
+
+volumes:
+  wp_files:
+    driver: local

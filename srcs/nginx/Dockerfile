@@ -12,5 +12,5 @@ COPY ./nginx_template.txt /etc/nginx/sites-available/default
 
 EXPOSE 443
 
-ENTRYPOINT
 CMD ["nginx", "-g", "daemon off;"]
+# CMD ["bash"]
