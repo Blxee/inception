@@ -23,6 +23,11 @@ if [ ! -f wp-config.php ]; then
         --admin_password="AdminPassword123!" \
         --admin_email="admin@example.com" \
         --skip-email
+    # Enable redis caching:
+    wp config set WP_REDIS_HOST redis --allow-root
+    wp config set WP_REDIS_PORT 6379 --allow-root
+    wp config set WP_CACHE true --raw --allow-root
+    wp plugin install redis-cache --activate --allow-root
 fi
 
 chown -R www-data:www-data /var/www/html

@@ -13,6 +13,7 @@ RUN sed -i 's/bind-address.*/bind-address = 0.0.0.0/' /etc/mysql/mariadb.conf.d/
 COPY setup_db.sql .
 
 EXPOSE 3306
+EXPOSE 80
 
 
 RUN mariadbd-safe & \

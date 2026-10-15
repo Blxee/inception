@@ -4,6 +4,7 @@ RUN apt-get -y update && apt-get -y install \
     php-fpm \
     php-mysql \
     php-cli \
+    php-redis \
     curl \
     mariadb-client \
     && rm -rf /var/lib/apt/lists/*

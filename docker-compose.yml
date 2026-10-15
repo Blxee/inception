@@ -9,20 +9,38 @@ services:
       - "4443:443"
     volumes:
       - wp_files:/var/www/html
+    restart: always
 
   wordpress:
     build: srcs/wordpress
     depends_on:
       - mariadb
+      - redis
     networks:
       - neet
     volumes:
       - wp_files:/var/www/html
+    restart: always
 
   mariadb:
     build: srcs/mariadb
     networks:
       - neet
+    restart: always
+
+  redis:
+    build: srcs/redis
+    networks:
+      - neet
+    restart: always
+
+  adminer:
+    build: srcs/adminer
+    ports:
+      - "8080:80"
+    networks:
+      - neet
+    restart: always
 
 networks:
   neet:
