@@ -1,10 +1,16 @@
+VOLUME = /home/atahiri-/data
+
 all: up
 
-up:
+up: $(VOLUME)
 	docker compose up -d --build
 
 down:
 	docker compose down -v
+
+$(VOLUME):
+	mkdir $@
+	
 
 re: down up
 

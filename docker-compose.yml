@@ -48,3 +48,7 @@ networks:
 volumes:
   wp_files:
     driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: /home/atahiri-/data
