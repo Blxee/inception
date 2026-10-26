@@ -1,0 +1,76 @@
+services:
+  nginx:
+    build: srcs/nginx
+    depends_on:
+      - wordpress
+    networks:
+      - neet
+    ports:
+      - "4443:443"
+    volumes:
+      - wp_files:/var/www/html
+    restart: always
+
+  wordpress:
+    build: srcs/wordpress
+    depends_on:
+      - mariadb
+      - redis
+    networks:
+      - neet
+    volumes:
+      - wp_files:/var/www/html
+    restart: always
+
+  mariadb:
+    build: srcs/mariadb
+    networks:
+      - neet
+    volumes:
+      - db_files:/var/lib/mysql
+    restart: always
+
+  redis:
+    build: srcs/redis
+    networks:
+      - neet
+    restart: always
+
+  adminer:
+    build: srcs/adminer
+    ports:
+      - "8080:80"
+    networks:
+      - neet
+    restart: always
+
+  ftp:
+    build: srcs/ftp
+    volumes:
+      - wp_files:/var/www/html
+    ports:
+      - "2020:20"
+      - "2121:21"
+      - "${PASV_MIN_PORT}-${PASV_MAX_PORT}:${PASV_MIN_PORT}-${PASV_MAX_PORT}"
+    environment:
+      - PASV_MIN_PORT=${PASV_MIN_PORT}
+      - PASV_MAX_PORT=${PASV_MAX_PORT}
+
+
+volumes:
+  wp_files:
+    # driver: local
+    # driver_opts:
+    #   type: none
+    #   o: bind
+    #   device: /home/atahiri-/data/wordpress
+
+  db_files:
+    # driver: local
+    # driver_opts:
+    #   type: none
+    #   o: bind
+    #   device: /home/atahiri-/data/mysql
+
+networks:
+  neet:

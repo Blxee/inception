@@ -1,0 +1,74 @@
+:root {
+  --radius: 1vmin;
+  --separator: 1.3vmin;
+  /* Color palette */
+  --color-darkest: #07171f;
+  --color-darker: #2c244e;
+  --color-dark: #2e4b7d;
+  --color-light: #2c678d;
+  --color-lighter: #2e879e;
+  --color-lightest: #b9a566;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  user-select: none;
+}
+
+body {
+  background: var(--color-light);
+}
+
+#board {
+  background: var(--color-darker);
+  height: 90vmin;
+  aspect-ratio: 1/1;
+
+  border-radius: calc(var(--radius) * 1.5);
+  border: calc(var(--radius) / 3) solid var(--color-darkest);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  display: grid;
+  grid-template-columns: repeat(8, auto);
+  grid-template-rows: repeat(8, auto);
+  gap: var(--separator);
+  padding: calc(var(--separator) * 0.6);
+  box-shadow: 0 0.8vmin 0 var(--color-darkest);
+}
+
+.cell {
+  aspect-ratio: 1/1;
+  border-radius: var(--radius);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+  overflow: hidden;
+  text-align: center;
+  box-shadow: 0 0.6vmin 0 var(--color-darkest);
+
+  font-size: 8cqmin;
+  color: var(--color-darkest);
+}
+
+.cell:hover {
+  background-color: var(--color-lightest);
+}
+
+.cell:focus {
+  background-color: white;
+
+}
+
+.even-cell {
+  background-color: var(--color-dark);
+}
+
+.odd-cell {
+  background-color: var(--color-light);
+}
