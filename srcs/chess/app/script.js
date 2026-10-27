@@ -11,7 +11,7 @@ const PLAYER_BLACK = '#000000';
 const PLAYER_WHITE = '#ffffff';
 
 class Piece {
-  contructor(type, player) {
+  constructor(type, player) {
     this.type = type;
     this.player = player;
     this.domPiece = document.createElement('div');
@@ -36,9 +36,8 @@ class Cell {
   }
 
   set content(content) {
-    this.#content = content;
-    if (this.#content instanceof Piece) {
-      console.log(content.domPiece);
+    if (content instanceof Piece) {
+      this.#content = content;
       this.domCell.appendChild(content.domPiece);
     }
   }
@@ -49,6 +48,8 @@ class Board {
   constructor() {
     this.grid = Array(8).fill(null).map(() => Array(8).fill(null));
     this.domBoard = document.getElementById('board');
+    this.selected = null;
+
 
     for (let i = 0, j = 0; i < 8 * 8; i++, j++) {
       if (i % 8 == 0) {
@@ -97,3 +98,18 @@ class Board {
 
 
 let board = new Board();
+
+const body = document.querySelector("body");
+const follower = document.createElement('h1');
+body.appendChild(follower);
+follower.textContent = "hello world";
+follower.style.position = "absolute";
+
+document.addEventListener('mousemove', (e) => {
+  // e.pageX and e.pageY account for page scrolling
+  const x = e.pageX;
+  const y = e.pageY;
+
+  // Dynamically update the position using translate
+  follower.style.transform = `translate(calc(${x}px - 50%), calc(${y}px - 50%))`;
+});
