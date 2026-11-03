@@ -63,15 +63,16 @@ services:
       - neet
     restart: unless-stopped
 
-  filegator:
-    build: srcs/filegator
-    ports:
-      - "8090:80"
-    volumes:
-      - wp_files:/var/www/html/repository/wordpress_backup
-    networks:
-      - neet
+  cadvisor:
+    build: srcs/cadvisor
     restart: unless-stopped
+    ports:
+      - "8080:8080"
+    volumes:
+      - /:/rootfs:ro
+      - /var/run:/var/run:rw
+      - /sys:/sys:ro
+      - /var/lib/docker:/var/lib/docker:ro
 
 volumes:
   wp_files:
