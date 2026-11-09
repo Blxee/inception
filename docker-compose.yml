@@ -38,8 +38,6 @@ services:
 
   adminer:
     build: srcs/adminer
-    ports:
-      - "8080:80"
     networks:
       - neet
     restart: unless-stopped
