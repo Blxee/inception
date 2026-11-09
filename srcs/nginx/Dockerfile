@@ -8,7 +8,7 @@ RUN openssl req -x509 -nodes -days 365 -newkey rsa:2048 \
   -out /etc/nginx/ssl/nginx.crt \
   -subj "/C=FR/ST=IDF/L=Paris/O=42/OU=42/CN=localhost"
 
-COPY ./nginx_template.txt /etc/nginx/sites-available/default
+COPY ./nginx_template.conf /etc/nginx/sites-available/default
 
 EXPOSE 443
 

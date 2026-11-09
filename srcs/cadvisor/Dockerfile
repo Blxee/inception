@@ -8,6 +8,6 @@ RUN wget https://github.com/google/cadvisor/releases/download/v0.60.6/cadvisor-v
   && mv cadvisor-v0.60.6-linux-amd64 /usr/local/bin/cadvisor \
   && chmod +x /usr/local/bin/cadvisor
 
-EXPOSE 8080
+EXPOSE 80
 
-CMD ["/usr/local/bin/cadvisor", "-port", "8080"]
+CMD ["/usr/local/bin/cadvisor", "-port", "80"]
