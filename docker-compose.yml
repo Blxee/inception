@@ -63,6 +63,8 @@ services:
 
   cadvisor:
     build: srcs/cadvisor
+    networks:
+      - neet
     restart: unless-stopped
     volumes:
       - /:/rootfs:ro
