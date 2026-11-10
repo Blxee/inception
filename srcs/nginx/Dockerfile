@@ -12,5 +12,5 @@ COPY ./nginx_template.conf /etc/nginx/sites-available/default
 
 EXPOSE 443
 
-# CMD ["nginx", "-g", "daemon off;"]
-CMD ["sleep", "infinity"]
+CMD ["nginx", "-g", "daemon off;"]
+# CMD ["sleep", "infinity"]

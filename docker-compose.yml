@@ -6,7 +6,7 @@ services:
     networks:
       - neet
     ports:
-      - "4443:443"
+      - "443:443"
     volumes:
       - wp_files:/var/www/html
     restart: unless-stopped
