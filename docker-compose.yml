@@ -74,18 +74,18 @@ services:
 
 volumes:
   wp_files:
-    # driver: local
-    # driver_opts:
-    #   type: none
-    #   o: bind
-    #   device: /home/atahiri-/data/wordpress
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: /home/atahiri-/data/wordpress
 
   db_files:
-    # driver: local
-    # driver_opts:
-    #   type: none
-    #   o: bind
-    #   device: /home/atahiri-/data/mysql
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: /home/atahiri-/data/mysql
 
 networks:
   neet:

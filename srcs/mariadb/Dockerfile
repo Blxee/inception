@@ -23,4 +23,3 @@ RUN mariadbd-safe & \
 
 USER mysql
 CMD ["mariadbd"]
-# CMD ["bash"]

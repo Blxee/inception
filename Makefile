@@ -1,5 +1,5 @@
 WP_VOLUME = /home/atahiri-/data/wordpress
-DB_VOLUME = /home/atahiri-/data/myql
+DB_VOLUME = /home/atahiri-/data/mysql
 
 all: up
 
@@ -10,10 +10,10 @@ down:
 	docker compose down -v
 
 $(WP_VOLUME):
-	# mkdir -p $@
+	mkdir -p $@
 
 $(DB_VOLUME):
-	# mkdir -p $@
+	mkdir -p $@
 
 re: down up
 
