@@ -23,7 +23,7 @@ In order to start the containerized stack, simply run:
 
 Or manually using:
 
-    docker compose up
+    docker compose up -d --build
 
 And to stop the stack, run:
 
