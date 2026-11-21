@@ -8,18 +8,12 @@ RUN mkdir -p /run/mysqld/ \
     && chown mysql:mysql /run/mysqld \
     && chmod 755 /run/mysqld
 
-RUN sed -i 's/bind-address.*/bind-address = 0.0.0.0/' /etc/mysql/mariadb.conf.d/50-server.cnf
+COPY entrypoint.sh /usr/local/bin/entrypoint.sh
 
-COPY setup_db.sql .
+RUN chmod +x /usr/local/bin/entrypoint.sh
+
+ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
 
 EXPOSE 3306
-EXPOSE 80
 
-
-RUN mariadbd-safe & \
-    until mysqladmin ping --silent; do sleep 1; done \
-    && mysql -uroot < setup_db.sql \
-    && mysqladmin -uroot shutdown
-
-USER mysql
-CMD ["mariadbd"]
+CMD ["mariadbd", "--user=mysql", "--bind-address=0.0.0.0"]

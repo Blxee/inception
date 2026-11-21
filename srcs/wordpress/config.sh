@@ -4,7 +4,7 @@ mkdir -p /var/www/html
 cd /var/www/html
 
 # Wait until MariaDB service is actively accepting connections
-until mariadb-admin ping -h"mariadb" -u"wp_user" -p"wp_pass"; do
+until mariadb-admin ping -h"mariadb" -u"$MARIA_USER" -p"$(cat /run/secrets/maria_password)"; do
     echo "Waiting for MariaDB service to be ready..."
     sleep 2
 done
@@ -14,14 +14,14 @@ echo "MariaDB is ready!"
 # Download and configure WordPress if wp-config.php does not exist
 if [ ! -f wp-config.php ]; then
     wp --allow-root core download
-    wp --allow-root config create --dbname=wp_db --dbuser=wp_user --dbpass=wp_pass --dbhost=mariadb
+    wp --allow-root config create --dbname="$MARIA_DB_NAME" --dbuser="$MARIA_USER" --dbpass="$(cat /run/secrets/maria_password)"--dbhost=mariadb
     wp core install \
         --allow-root \
-        --url="https://localhost" \
+        --url="https://atahiri-.42.fr" \
         --title="Inception" \
-        --admin_user="wpadmin" \
-        --admin_password="AdminPassword123!" \
-        --admin_email="admin@example.com" \
+        --admin_user="$WP_ADMIN_USERNAME" \
+        --admin_password="$(cat /run/secrets/wp_admin_password)" \
+        --admin_email="$WP_ADMIN_EMAIL" \
         --skip-email
     # Enable redis caching:
     wp config set WP_REDIS_HOST redis --allow-root

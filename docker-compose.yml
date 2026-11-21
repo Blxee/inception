@@ -20,6 +20,14 @@ services:
       - neet
     volumes:
       - wp_files:/var/www/html
+    environment:
+      - MARIA_USER=${MARIA_USER}
+      - MARIA_DB_NAME=${MARIA_DB_NAME}
+      - WP_ADMIN_USERNAME=${WP_ADMIN_USERNAME}
+      - WP_ADMIN_EMAIL=${WP_ADMIN_EMAIL}
+    secrets:
+      - maria_password
+      - wp_admin_password
     restart: unless-stopped
 
   mariadb:
@@ -28,6 +36,11 @@ services:
       - neet
     volumes:
       - db_files:/var/lib/mysql
+    environment:
+      - MARIA_USER=${MARIA_USER}
+      - MARIA_DB_NAME=${MARIA_DB_NAME}
+    secrets:
+      - maria_password
     restart: unless-stopped
 
   redis:
@@ -74,18 +87,24 @@ services:
 
 volumes:
   wp_files:
-    driver: local
-    driver_opts:
-      type: none
-      o: bind
-      device: /home/atahiri-/data/wordpress
+    # driver: local
+    # driver_opts:
+    #   type: none
+    #   o: bind
+    #   device: /home/atahiri-/data/wordpress
 
   db_files:
-    driver: local
-    driver_opts:
-      type: none
-      o: bind
-      device: /home/atahiri-/data/mysql
+    # driver: local
+    # driver_opts:
+    #   type: none
+    #   o: bind
+    #   device: /home/atahiri-/data/mysql
 
 networks:
   neet:
+
+secrets:
+  maria_password:
+    file: ./secrets/maria_password.txt
+  wp_admin_password:
+    file: ./secrets/wp_admin_password.txt

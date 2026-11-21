@@ -3,17 +3,17 @@ DB_VOLUME = /home/atahiri-/data/mysql
 
 all: up
 
-up: $(WP_VOLUME) $(DB_VOLUME)
+up: #$(WP_VOLUME) $(DB_VOLUME)
 	docker compose up -d --build
 
 down:
 	docker compose down -v
 
 $(WP_VOLUME):
-	mkdir -p $@
+	# mkdir -p $@
 
 $(DB_VOLUME):
-	mkdir -p $@
+	# mkdir -p $@
 
 re: down up
 
