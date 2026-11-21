@@ -14,7 +14,7 @@ echo "MariaDB is ready!"
 # Download and configure WordPress if wp-config.php does not exist
 if [ ! -f wp-config.php ]; then
     wp --allow-root core download
-    wp --allow-root config create --dbname="$MARIA_DB_NAME" --dbuser="$MARIA_USER" --dbpass="$(cat /run/secrets/maria_password)"--dbhost=mariadb
+    wp --allow-root config create --dbname="$MARIA_DB_NAME" --dbuser="$MARIA_USER" --dbpass="$(cat /run/secrets/maria_password)" --dbhost=mariadb
     wp core install \
         --allow-root \
         --url="https://atahiri-.42.fr" \
