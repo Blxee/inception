@@ -4,10 +4,10 @@ DB_VOLUME = /home/atahiri-/data/mysql
 all: up
 
 up: #$(WP_VOLUME) $(DB_VOLUME)
-	docker compose up -d --build
+	docker compose -f srcs/docker-compose.yml up -d  --build
 
 down:
-	docker compose down -v
+	docker compose -f srcs/docker-compose.yml down -v
 
 $(WP_VOLUME):
 	# mkdir -p $@

@@ -1,6 +1,6 @@
 services:
   nginx:
-    build: srcs/nginx
+    build: nginx
     depends_on:
       - wordpress
     networks:
@@ -12,7 +12,7 @@ services:
     restart: unless-stopped
 
   wordpress:
-    build: srcs/wordpress
+    build: wordpress
     depends_on:
       - mariadb
       - redis
@@ -31,7 +31,7 @@ services:
     restart: unless-stopped
 
   mariadb:
-    build: srcs/mariadb
+    build: mariadb
     networks:
       - neet
     volumes:
@@ -44,19 +44,19 @@ services:
     restart: unless-stopped
 
   redis:
-    build: srcs/redis
+    build: redis
     networks:
       - neet
     restart: unless-stopped
 
   adminer:
-    build: srcs/adminer
+    build: adminer
     networks:
       - neet
     restart: unless-stopped
 
   ftp:
-    build: srcs/ftp
+    build: ftp
     volumes:
       - wp_files:/var/www/html
     ports:
@@ -69,13 +69,13 @@ services:
     restart: unless-stopped
 
   chess:
-    build: srcs/chess
+    build: chess
     networks:
       - neet
     restart: unless-stopped
 
   cadvisor:
-    build: srcs/cadvisor
+    build: cadvisor
     networks:
       - neet
     restart: unless-stopped
