@@ -15,8 +15,8 @@ The following guide is a step-by-step for setting up the stack from scratch.
 
 To configure the stack, you mainly want to work with two locations:
 
-* [**secrets/**](/secrets/): directory with files containing sensitive information.
-* [**.env**](/.env): file with environment variables for non-sensitive data.
+* [**secrets/**](srcs/secrets/): directory with files containing sensitive information.
+* [**.env**](srcs/.env): file with environment variables for non-sensitive data.
 
 These are not provided by default, instead you'll have to copy their templates located at:
 
